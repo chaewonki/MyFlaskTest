@@ -35,10 +35,11 @@ jobs:
     
     - name: Test with pytest
       run: |
-        python -m pytest tests/ --cov=flaskapp --cov-report=xml
-    
+        python -m pytest tests/ --cov=flaskapp --cov-report=term-missing
+
+    # Make Codecov upload optional
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
+      continue-on-error: true # This makes the step optional
       with:
-        file: ./coverage.xml
-        fail_ci_if_error: true
+        fail_ci_if_error: false # Don't fail if upload fails

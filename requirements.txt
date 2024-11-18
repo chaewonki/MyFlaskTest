@@ -1,0 +1,5 @@
+# requirements.txt
+flask==2.0.1
+pytest==7.1.1
+pytest-cov==2.12.1
+flake8==3.9.2

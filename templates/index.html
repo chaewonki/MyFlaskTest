@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Flask App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        .delete-btn {
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Item List</h1>
+    
+    <form action="{{ url_for('add_item') }}" method="post">
+        <input type="text" name="item" placeholder="Enter an item" required>
+        <button type="submit">Add Item</button>
+    </form>
+
+    <div class="items-list">
+        {% for item in items %}
+        <div class="item">
+            <span>{{ item }}</span>
+            <a href="{{ url_for('delete_item', index=loop.index0) }}" class="delete-btn">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

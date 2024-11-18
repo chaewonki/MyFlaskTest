@@ -2,7 +2,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 
-app = Flask(__name__)
+# Update the template folder path
+template_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates'))
+app = Flask(__name__, template_folder=template_dir)
 
 # List to store items (in a real app, you'd use a database)
 items = []
@@ -25,8 +27,4 @@ def delete_item(index):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    # Create templates directory if it doesn't exist
-    if not os.path.exists('templates'):
-        os.makedirs('templates')
-    
     app.run(debug=True)

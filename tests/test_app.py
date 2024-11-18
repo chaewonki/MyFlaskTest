@@ -6,11 +6,13 @@ import os
 # Add the parent directory to the Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from flaskapp.app import app
+from flaskapp.app import app, items
 
 @pytest.fixture
 def client():
     app.config['TESTING'] = True
+    # Clear items before each test
+    items.clear()
     with app.test_client() as client:
         yield client
 

@@ -19,11 +19,6 @@ def client():
 def test_index_page(client):
     """Test that index page loads correctly"""
     rv = client.get('/')
-
-    print("Status Code:", rv.status_code)
-    print("Response Data:", rv.data.decode('utf-8'))
-    print("Headers:", rv.headers)
-
     assert rv.status_code == 200
     assert b'My Item List' in rv.data
 

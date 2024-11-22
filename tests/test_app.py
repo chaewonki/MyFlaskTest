@@ -6,7 +6,7 @@ import os
 # Add the parent directory to the Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from flaskapp.app import app, items
+from flaskapp import app, items
 
 
 @pytest.fixture

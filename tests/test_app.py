@@ -1,8 +1,10 @@
 import pytest
-from flaskapp import app  # Import the actual app, no need for create_app
+from flaskapp import create_app  # Import the create_app function
 
 @pytest.fixture
 def client():
+    app = create_app()  # Call the factory function to create a new app instance
+    app.testing = True
     with app.test_client() as client:
         yield client
 

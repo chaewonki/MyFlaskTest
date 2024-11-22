@@ -8,7 +8,7 @@ DevOpsPersonalProject
 │   │   ├── MANIFEST.in
 │   ├── __init__.py
 ├── tests
-│   ├── test_app.py         # App configuration
+│   ├── test_app.py       
 ├── .gitignore
 ├── dockerfile
 ├── requirements.txt

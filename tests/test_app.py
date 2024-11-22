@@ -1,5 +1,5 @@
 import pytest
-from flaskapp import create_app  # Import the create_app function
+from flaskapp import create_app
 
 @pytest.fixture
 def client():

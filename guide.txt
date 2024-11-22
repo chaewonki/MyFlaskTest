@@ -1,8 +1,0 @@
-1. Python Flask 애플리케이션 구축
-2. GitHub 저장소에 푸시
-3. CI 도구 설정 -> GitHub Actions
-4. 테스트 자동화 설정 -> pytest, unittest
-5. Dockerize Application
-6. 배포 자동화 -> Heroku로 자동배포
-7. 모니터링 및 로깅 -> Prometheus, Grafana
-8. 통합 및 피드백

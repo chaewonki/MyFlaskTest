@@ -1,0 +1,16 @@
+DevOpsPersonalProject
+├── .github
+│   ├── workflows
+│   │   ├── flask-ci.yml
+├── flaskapp
+│   ├── templates
+│   │   ├── index.html
+│   │   ├── MANIFEST.in
+│   ├── __init__.py
+├── tests
+│   ├── test_app.py         # App configuration
+├── .gitignore
+├── dockerfile
+├── requirements.txt
+├── setup.py
+├── structure.txt

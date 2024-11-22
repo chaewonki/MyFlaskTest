@@ -13,19 +13,11 @@ def index():
     return render_template("index.html", items=items)
 
 @app.route("/add_item", methods=["POST"])
-def test_add_item(client):
-    # Test adding an item via POST request
-    response = client.post('/add_item', data={'item': 'Test Item'})
-    
-    # Assert that the response is a redirect (302)
-    assert response.status_code == 302
-    
-    # Follow the redirect to the index page (this is where you expect the item to appear)
-    response = client.get('/')  # This follows the redirect and accesses the index page
-    
-    # Assert that the added item appears in the rendered template
-    assert b"Test Item" in response.data  # The item should now be in the index view
-
+def add_item():
+    item = request.form.get('item')
+    if item:
+        items.append(item)
+    return redirect(url_for("index"))
 
 @app.route("/delete_item/<int:index>")
 def delete_item(index):

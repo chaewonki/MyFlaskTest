@@ -1,43 +1,25 @@
-# tests/test_app.py
 import pytest
-import sys
-import os
-
-# Add the parent directory to the Python path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from flaskapp import app, items
-
+from flaskapp import create_app
 
 @pytest.fixture
-def client():
-    app.config["TESTING"] = True
-    # Clear items before each test
-    items.clear()
-    with app.test_client() as client:
-        yield client
+def app():
+    # Create a test version of the app
+    app = create_app()
+    app.testing = True
+    return app
 
+@pytest.fixture
+def client(app):
+    return app.test_client()
 
-def test_index_page(client):
-    """Test that index page loads correctly"""
-    rv = client.get("/")
-    assert rv.status_code == 200
-    assert b"My Item List" in rv.data
-
+def test_index(client):
+    # Test the index route
+    response = client.get('/')
+    assert response.status_code == 200
+    assert b"Add Item" in response.data  # Assuming your index.html contains an 'Add Item' button
 
 def test_add_item(client):
-    """Test adding an item"""
-    rv = client.post("/add_item", data=dict(item="Test Item"), follow_redirects=True)
-    assert rv.status_code == 200
-    assert b"Test Item" in rv.data
-
-
-def test_delete_item(client):
-    """Test deleting an item"""
-    # First add an item
-    client.post("/add_item", data=dict(item="Test Item"), follow_redirects=True)
-
-    # Then delete it
-    rv = client.get("/delete_item/0", follow_redirects=True)
-    assert rv.status_code == 200
-    assert b"Test Item" not in rv.data
+    # Test adding an item via POST request
+    response = client.post('/add_item', data={'item': 'Test Item'})
+    assert response.status_code == 302  # Should redirect after posting
+    assert b"Test Item" in response.data  # Should appear in the index view

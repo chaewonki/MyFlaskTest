@@ -9,6 +9,7 @@ DevOpsPersonalProject
 │   ├── __init__.py
 ├── tests
 │   ├── test_app.py       
+├── .dockerignore
 ├── .gitignore
 ├── dockerfile
 ├── requirements.txt
